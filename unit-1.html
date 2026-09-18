@@ -158,7 +158,55 @@
       color: #666;
       font-size: 15px;
     }
+.upload-box {
+  background: white;
+  border: 1px solid #dbe5f0;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
 
+.upload-box h3 {
+  margin-top: 0;
+}
+
+.upload-warning {
+  color: #b33a3a;
+  font-weight: bold;
+}
+
+#writingPdf {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+#fileInfo {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  display: none;
+}
+
+.file-ok {
+  display: block !important;
+  background: #edf8f2;
+  color: #167a45;
+}
+
+.file-error {
+  display: block !important;
+  background: #fff0f0;
+  color: #b33a3a;
+}
+
+.submit-writing {
+  margin-top: 8px;
+}
+
+#submitMessage {
+  margin-top: 16px;
+  font-weight: bold;
+}
     footer {
       text-align: center;
       padding: 30px;
@@ -469,15 +517,30 @@
     </p>
   </div>
 
-  <textarea
-    id="writing"
-    placeholder="Write your paragraph here..."
-    oninput="countWords()"
-  ></textarea>
+ <div class="upload-box">
 
-  <div class="word-count">
-    Words: <span id="wordCount">0</span>
-  </div>
+  <h3>Upload Your Writing</h3>
+
+  <p>
+    請先完成紙本寫作，再使用手機的
+    <strong>「掃描文件」</strong>
+    功能存成 PDF。
+  </p>
+
+  <p class="upload-warning">
+    ⚠️ 僅接受 PDF。請不要直接拍照後轉成 PDF。
+  </p>
+
+  <input
+    type="file"
+    id="writingPdf"
+    accept=".pdf,application/pdf"
+    onchange="checkPdf()"
+  >
+
+  <div id="fileInfo"></div>
+
+</div>
 
 
   <div class="question checklist">
@@ -508,7 +571,11 @@
       Check Everything — 我有檢查拼字、大小寫與標點符號。
     </label>
   </div>
+<button class="submit-writing" onclick="submitWriting()">
+  Submit Writing
+</button>
 
+<div id="submitMessage"></div>
 </main>
 
 
@@ -517,6 +584,62 @@
 </footer>
 
 
+<script>
+
+const correctAnswers = {
+  q1: "Thousands of years ago",
+  q2: "To suit people's needs",
+  q3: "Dogs come in many types, shapes, and sizes.",
+  q4: "Strong, fast and smart",
+  q5: "shepherds",
+  q6: "Smaller dogs with shorter legs",
+  q7: "Strong and fast",
+  q8: "Because they help people get around",
+  q9: "Because they want a pet"
+};
+
+
+let validPdf = false;
+
+function checkPdf() {
+
+  const input = document.getElementById("writingPdf");
+  const fileInfo = document.getElementById("fileInfo");
+
+  validPdf = false;
+
+  if (!input.files || input.files.length === 0) {
+    fileInfo.style.display = "none";
+    return;
+  }
+
+  const file = input.files[0];
+
+  const fileName = file.name.toLowerCase();
+
+  const isPdf =
+    file.type === "application/pdf" ||
+    fileName.endsWith(".pdf");
+
+  if (!isPdf) {
+
+    input.value = "";
+
+    fileInfo.className = "file-error";
+
+    fileInfo.innerHTML =
+      "✗ Please upload a PDF file only.";
+
+    return;
+  }
+
+  const maxSize = 10 * 1024 * 1024;
+
+  if (file.size > maxSize) {
+
+    input.value = "";
+
+    fileInfo.className = "file-error";
 <script>
 
 const correctAnswers = {
@@ -550,7 +673,6 @@ function checkAnswers() {
       document.getElementById(
         "feedback-" + name
       );
-
 
     if (!selected) {
 
@@ -586,7 +708,6 @@ function checkAnswers() {
     }
   }
 
-
   const result =
     document.getElementById("result");
 
@@ -615,7 +736,6 @@ function checkAnswers() {
 
   }
 
-
   result.innerHTML =
     "Score: " +
     score +
@@ -624,39 +744,111 @@ function checkAnswers() {
     "<br>" +
     message;
 
-
   result.scrollIntoView({
     behavior: "smooth",
     block: "center"
   });
-
 }
 
 
-function countWords() {
+let validPdf = false;
 
-  const text =
-    document
-      .getElementById("writing")
-      .value
-      .trim();
 
-  let count = 0;
+function checkPdf() {
 
-  if (text !== "") {
+  const input =
+    document.getElementById("writingPdf");
 
-    count =
-      text
-        .split(/\s+/)
-        .filter(Boolean)
-        .length;
+  const fileInfo =
+    document.getElementById("fileInfo");
 
+  validPdf = false;
+
+  if (!input.files || input.files.length === 0) {
+
+    fileInfo.style.display = "none";
+
+    return;
   }
 
-  document
-    .getElementById("wordCount")
-    .textContent = count;
+  const file =
+    input.files[0];
 
+  const fileName =
+    file.name.toLowerCase();
+
+  const isPdf =
+    file.type === "application/pdf" ||
+    fileName.endsWith(".pdf");
+
+  if (!isPdf) {
+
+    input.value = "";
+
+    fileInfo.className =
+      "file-error";
+
+    fileInfo.innerHTML =
+      "✗ Please upload a PDF file only.";
+
+    return;
+  }
+
+  const maxSize =
+    10 * 1024 * 1024;
+
+  if (file.size > maxSize) {
+
+    input.value = "";
+
+    fileInfo.className =
+      "file-error";
+
+    fileInfo.innerHTML =
+      "✗ File is too large. Maximum size: 10 MB.";
+
+    return;
+  }
+
+  validPdf = true;
+
+  const sizeMB =
+    (file.size / 1024 / 1024).toFixed(2);
+
+  fileInfo.className =
+    "file-ok";
+
+  fileInfo.innerHTML =
+    "✓ PDF ready<br>" +
+    "File: " +
+    file.name +
+    "<br>Size: " +
+    sizeMB +
+    " MB";
+}
+
+
+function submitWriting() {
+
+  const message =
+    document.getElementById("submitMessage");
+
+  if (!validPdf) {
+
+    message.style.color =
+      "#b33a3a";
+
+    message.innerHTML =
+      "Please choose a PDF file first.";
+
+    return;
+  }
+
+  message.style.color =
+    "#167a45";
+
+  message.innerHTML =
+    "✓ PDF is ready. Google Drive submission will be connected next.";
 }
 
 </script>
