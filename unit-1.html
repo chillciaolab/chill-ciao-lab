@@ -828,12 +828,19 @@ function checkPdf() {
 }
 
 
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbwPGsg5du3IV4VYkE4FR3v-EWKbtAm--SE4axCZA2v5a7h4EuVikY1OmyN0bxxom_TYNg/exec";
+
+
 function submitWriting() {
+
+  const input =
+    document.getElementById("writingPdf");
 
   const message =
     document.getElementById("submitMessage");
 
-  if (!validPdf) {
+  if (!validPdf || !input.files || input.files.length === 0) {
 
     message.style.color =
       "#b33a3a";
@@ -844,11 +851,85 @@ function submitWriting() {
     return;
   }
 
+
+  const file =
+    input.files[0];
+
   message.style.color =
-    "#167a45";
+    "#666";
 
   message.innerHTML =
-    "✓ PDF is ready. Google Drive submission will be connected next.";
+    "Uploading PDF... Please wait.";
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = async function() {
+
+    const base64Data =
+      reader.result.split(",")[1];
+
+    const data =
+      new URLSearchParams();
+
+    data.append(
+      "fileName",
+      file.name
+    );
+
+    data.append(
+      "fileData",
+      base64Data
+    );
+
+
+    try {
+
+      await fetch(
+        WEB_APP_URL,
+        {
+          method: "POST",
+          body: data,
+          mode: "no-cors"
+        }
+      );
+
+
+      message.style.color =
+        "#167a45";
+
+      message.innerHTML =
+        "✓ Writing submitted. Thank you!";
+
+    }
+
+    catch (error) {
+
+      message.style.color =
+        "#b33a3a";
+
+      message.innerHTML =
+        "Upload failed. Please try again.";
+
+    }
+
+  };
+
+
+  reader.onerror = function() {
+
+    message.style.color =
+      "#b33a3a";
+
+    message.innerHTML =
+      "Unable to read this PDF. Please try again.";
+
+  };
+
+
+  reader.readAsDataURL(file);
 }
 
 </script>
