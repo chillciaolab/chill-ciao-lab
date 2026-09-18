@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 1 | Chill Ciao Lab</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      background: #f7f9fc;
+      color: #222;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #dbe5f0;
+      padding: 24px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    .question {
+      background: white;
+      border: 1px solid #dbe5f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .question h2 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    label:hover {
+      background: #f1f5f9;
+    }
+
+    button {
+      background: #3778b8;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 24px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #3778b8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Unit 1</h1>
+  <p>GEPT Elementary Practice</p>
+</header>
+
+<main>
+
+  <a class="back" href="index.html">← Back to Home</a>
+
+  <div class="question">
+    <h2>1. Amy ___ English every day.</h2>
+
+    <label>
+      <input type="radio" name="q1" value="0">
+      study
+    </label>
+
+    <label>
+      <input type="radio" name="q1" value="1">
+      studies
+    </label>
+
+    <label>
+      <input type="radio" name="q1" value="0">
+      studying
+    </label>
+  </div>
+
+
+  <div class="question">
+    <h2>2. Which sentence is correct?</h2>
+
+    <label>
+      <input type="radio" name="q2" value="0">
+      He can swims very fast.
+    </label>
+
+    <label>
+      <input type="radio" name="q2" value="1">
+      He can swim very fast.
+    </label>
+
+    <label>
+      <input type="radio" name="q2" value="0">
+      He can swimming very fast.
+    </label>
+  </div>
+
+
+  <div class="question">
+    <h2>3. I was tired, ___ I went to bed early.</h2>
+
+    <label>
+      <input type="radio" name="q3" value="0">
+      but
+    </label>
+
+    <label>
+      <input type="radio" name="q3" value="1">
+      so
+    </label>
+
+    <label>
+      <input type="radio" name="q3" value="0">
+      because
+    </label>
+  </div>
+
+
+  <button onclick="checkAnswers()">Check My Score</button>
+
+  <div id="result"></div>
+
+</main>
+
+
+<script>
+function checkAnswers() {
+  let score = 0;
+
+  const questions = ["q1", "q2", "q3"];
+
+  questions.forEach(function(question) {
+    const answer = document.querySelector(
+      'input[name="' + question + '"]:checked'
+    );
+
+    if (answer) {
+      score += Number(answer.value);
+    }
+  });
+
+  document.getElementById("result").innerHTML =
+    "Your score: " + score + " / 3";
+}
+</script>
+
+</body>
+</html>
