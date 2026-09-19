@@ -530,7 +530,25 @@
   <p class="upload-warning">
     ⚠️ 僅接受 PDF。請不要直接拍照後轉成 PDF。
   </p>
+<div style="margin: 20px 0;">
+  <label for="studentName" style="display:block; font-weight:bold; margin-bottom:8px;">
+    Student Name / 學生姓名
+  </label>
 
+  <input
+    type="text"
+    id="studentName"
+    placeholder="例如：Elly"
+    style="
+      width: 100%;
+      max-width: 360px;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccd6e0;
+      border-radius: 8px;
+    "
+  >
+</div>
   <input
     type="file"
     id="writingPdf"
@@ -776,7 +794,28 @@ function checkPdf() {
 const WEB_APP_URL =
   "https://script.google.com/macros/s/AKfycbwPGsg5du3IV4VYkE4FR3v-EWKbtAm--SE4axCZA2v5a7h4EuVikY1OmyN0bxxom_TYNg/exec";
 
+function safeFileNamePart(text) {
+  return text
+    .trim()
+    .replace(/[\\/:*?"<>|]/g, "")
+    .replace(/\s+/g, "-");
+}
 
+
+function getLocalDateString() {
+
+  const now = new Date();
+
+  const year = now.getFullYear();
+
+  const month =
+    String(now.getMonth() + 1).padStart(2, "0");
+
+  const day =
+    String(now.getDate()).padStart(2, "0");
+
+  return year + "-" + month + "-" + day;
+}
 function submitWriting() {
 
   const input =
@@ -784,7 +823,22 @@ function submitWriting() {
 
   const message =
     document.getElementById("submitMessage");
+  const studentName =
+    document
+      .getElementById("studentName")
+      .value
+      .trim();
 
+  if (!studentName) {
+
+    message.style.color =
+      "#b33a3a";
+
+    message.innerHTML =
+      "Please enter your name first.";
+
+    return;
+  }
   if (!validPdf || !input.files || input.files.length === 0) {
 
     message.style.color =
@@ -799,7 +853,18 @@ function submitWriting() {
 
   const file =
     input.files[0];
+  
+const safeStudentName =
+  safeFileNamePart(studentName);
 
+const date =
+  getLocalDateString();
+
+const generatedFileName =
+  safeStudentName +
+  "_Unit-1_" +
+  date +
+  ".pdf";
   message.style.color =
     "#666";
 
@@ -815,13 +880,13 @@ function submitWriting() {
 
     const base64Data =
       reader.result.split(",")[1];
-
+    
     const data =
       new URLSearchParams();
 
     data.append(
-      "fileName",
-      file.name
+      "fileName", 
+      generatedFileName
     );
 
     data.append(
