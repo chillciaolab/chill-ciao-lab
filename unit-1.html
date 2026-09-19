@@ -586,61 +586,6 @@
 
 <script>
 
-const correctAnswers = {
-  q1: "Thousands of years ago",
-  q2: "To suit people's needs",
-  q3: "Dogs come in many types, shapes, and sizes.",
-  q4: "Strong, fast and smart",
-  q5: "shepherds",
-  q6: "Smaller dogs with shorter legs",
-  q7: "Strong and fast",
-  q8: "Because they help people get around",
-  q9: "Because they want a pet"
-};
-
-
-let validPdf = false;
-
-function checkPdf() {
-
-  const input = document.getElementById("writingPdf");
-  const fileInfo = document.getElementById("fileInfo");
-
-  validPdf = false;
-
-  if (!input.files || input.files.length === 0) {
-    fileInfo.style.display = "none";
-    return;
-  }
-
-  const file = input.files[0];
-
-  const fileName = file.name.toLowerCase();
-
-  const isPdf =
-    file.type === "application/pdf" ||
-    fileName.endsWith(".pdf");
-
-  if (!isPdf) {
-
-    input.value = "";
-
-    fileInfo.className = "file-error";
-
-    fileInfo.innerHTML =
-      "✗ Please upload a PDF file only.";
-
-    return;
-  }
-
-  const maxSize = 10 * 1024 * 1024;
-
-  if (file.size > maxSize) {
-
-    input.value = "";
-
-    fileInfo.className = "file-error";
-
 
 const correctAnswers = {
   q1: "Thousands of years ago",
