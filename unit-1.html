@@ -616,12 +616,15 @@ const correctAnswers = {
   q8: "Because they help people get around",
   q9: "Because they want a pet"
 };
-
+  
+let currentScore = null;
+let currentWrongItems = [];
 
 function checkAnswers() {
 
   let score = 0;
   const total = 9;
+  const wrongItems = [];
 
   for (let i = 1; i <= total; i++) {
 
@@ -639,6 +642,8 @@ function checkAnswers() {
 
     if (!selected) {
 
+      wrongItems.push("Q" + i);
+      
       feedback.className = "feedback wrong";
 
       feedback.textContent =
@@ -660,7 +665,7 @@ function checkAnswers() {
     }
 
     else {
-
+ wrongItems.push("Q" + i);
       feedback.className =
         "feedback wrong";
 
@@ -670,7 +675,8 @@ function checkAnswers() {
 
     }
   }
-
+ currentScore = score;
+  currentWrongItems = wrongItems;
   const result =
     document.getElementById("result");
 
@@ -839,6 +845,16 @@ function submitWriting() {
 
     return;
   }
+ if (currentScore === null) {
+
+  message.style.color =
+    "#b33a3a";
+
+  message.innerHTML =
+    "Please click Check My Answers first.";
+
+  return;
+} 
   if (!validPdf || !input.files || input.files.length === 0) {
 
     message.style.color =
@@ -891,9 +907,28 @@ const generatedFileName =
 
     data.append(
       "fileData",
+      
       base64Data
     );
+data.append(
+  "studentName",
+  studentName
+);
 
+data.append(
+  "unit",
+  "Unit 1"
+);
+
+data.append(
+  "score",
+  currentScore === null ? "" : currentScore + "/9"
+);
+
+data.append(
+  "wrongItems",
+  currentWrongItems.join(", ")
+);
 
     try {
 
