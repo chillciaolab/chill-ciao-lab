@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chill Ciao Lab | Reading Starter 3 • Unit 1</title>
+<style>
+:root{--ink:#233039;--muted:#677780;--teal:#147e7e;--soft:#e7f5f2;--paper:#fffdf9;--line:#dfebe7;--ok:#16824b;--bad:#bb4c44;--gold:#dc9a41}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f3f7f4;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;font-size:16px;line-height:1.6}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.header-inner{max-width:780px;padding:18px 20px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-weight:800;letter-spacing:.35px;color:var(--teal);font-size:19px}.tag{color:var(--muted);font-size:12px;text-align:right}
+main{max-width:780px;margin:auto;padding:22px 15px 60px}
+.hero{border:1px solid #cce7df;border-radius:20px;padding:24px;background:linear-gradient(125deg,#e5f5ee,#fcfaf3)}
+.kicker{text-transform:uppercase;letter-spacing:.7px;font-size:12px;font-weight:750;color:#467b72}
+h1{font-size:30px;letter-spacing:-.6px;line-height:1.15;margin:8px 0 10px}
+p{margin:8px 0}
+.note{font-size:13px;color:#566a65}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px;box-shadow:0 3px 15px rgba(34,62,51,.025)}
+h2{font-size:20px;margin:0 0 5px}h3{font-size:17px;margin:0 0 8px}.mini{color:var(--muted);font-size:13px;margin-bottom:16px}
+label{cursor:pointer}
+.name-input,textarea{font:inherit;width:100%;background:#fff;border:1px solid #bdcec9;border-radius:10px;padding:11px 12px;outline:none;color:var(--ink)}
+.name-input:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px #dff4ec}
+.field-title{display:block;font-size:13px;font-weight:750;margin-bottom:5px}
+button{font:inherit;cursor:pointer;touch-action:manipulation}
+.btn{border:0;border-radius:11px;padding:11px 18px;font-weight:750;background:var(--teal);color:#fff}
+.btn.secondary{background:#fff;color:var(--teal);border:1px solid #91c7b9}.btn:disabled{cursor:not-allowed;opacity:.5}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.question{padding:19px 0;border-bottom:1px solid #edf2ef}.question:first-of-type{padding-top:4px}.question:last-of-type{padding-bottom:0;border:0}
+.q-title{font-size:15px;font-weight:750;margin-bottom:12px}.q-num{display:inline-flex;width:25px;height:25px;border-radius:50%;background:var(--soft);align-items:center;justify-content:center;font-size:12px;color:var(--teal);font-weight:850;margin-right:7px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.option{display:flex;gap:9px;align-items:center;background:#fafcfb;border:1px solid #e4ece8;border-radius:11px;padding:11px 12px;font-size:14px;min-height:48px;transition:border-color .15s,background .15s}
+.option:has(input:checked){border-color:var(--teal);background:#e8f5f1}.option input{accent-color:var(--teal);flex-shrink:0}
+.feedback{display:none;margin-top:10px;padding:10px 12px;border-radius:10px;font-size:13px}
+.feedback.correct{background:#eaf6ee;color:#136e3f}.feedback.wrong{background:#fff0ed;color:#9b3f39}
+.short-answer{padding:12px 0;border-bottom:1px solid #edf2ef}.short-answer:last-child{border-bottom:none}
+.short-answer textarea{height:80px;resize:vertical}.short-answer label{font-size:14px;font-weight:750;display:block;margin-bottom:6px}
+.example{display:none;font-size:13px;padding:8px 11px;background:var(--soft);border-radius:8px;margin-top:7px;color:#34685e}
+.score{display:none;background:#ecf8f1;border:1px solid #b5ddc4;padding:17px;border-radius:14px;margin-top:18px}
+.score strong{font-size:22px;color:#17643b}
+.status{margin-top:8px;font-size:13px;color:#586b61}
+footer{text-align:center;font-size:12px;color:#75817c;margin-top:28px}
+.hidden{display:none!important}
+@media(max-width:530px){main{padding:14px 11px 40px}.hero{padding:21px 17px}.card{padding:18px 16px}.options{grid-template-columns:1fr}h1{font-size:26px}.header-inner{padding:13px 14px}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="brand">Chill Ciao Lab</div><div class="tag">English Practice<br>Reading Starter • Book 3</div></div></header>
+<main>
+<section class="hero">
+<div class="kicker">Reading Starter Book 3 · Unit 1</div>
+<h1>My Sister’s Party 🎈</h1>
+<p>閱讀課後複習：Reading → Language → Writing</p>
+<p class="note">請先閱讀自己的 Compass 電子書 Unit 1，再回來完成練習。以下是依照課程重點另外編寫的題目，不是課本原題。</p>
+</section>
+<section class="card" id="start-card">
+<h2>Start Practice</h2>
+<p class="mini">先輸入英文名字與英文姓氏，再開始作答。</p>
+<label class="field-title" for="student-name">Student Name</label>
+<input id="student-name" class="name-input" placeholder="e.g. Alex Lin" autocomplete="name" maxlength="80">
+<div class="actions"><button class="btn" id="start-btn" type="button">Start Practice →</button></div>
+<p id="start-error" class="note" style="color:#a34a3c" role="alert"></p>
+</section>
+<div id="practice" class="hidden">
+<section class="card"><h2>Part A · Reading Check</h2><p class="mini">Read each question. Choose the best answer.</p><div id="reading-questions"></div></section>
+<section class="card"><h2>Part B · Language Focus</h2><p class="mini">Practice useful language from the unit.</p><div id="language-questions"></div></section>
+<section class="card"><h2>Part C · Wh- Questions</h2><p class="mini">Answer in complete English sentences. The example answers appear after you check Part A & B.</p>
+<div class="short-answer"><label for="wh1">1. Why does the boy need to wait before playing with Jimmy?</label><textarea id="wh1" placeholder="Because ..."></textarea><div class="example" id="example1">Example: Because he needs to help his mom prepare for the party.</div></div>
+<div class="short-answer"><label for="wh2">2. What jobs does the family need to finish before the party?</label><textarea id="wh2" placeholder="They need to ..."></textarea><div class="example" id="example2">Example: They need to decorate the room with balloons and get the table ready.</div></div>
+<div class="short-answer"><label for="wh3">3. How would you help prepare for a birthday party?</label><textarea id="wh3" placeholder="I would ..."></textarea><div class="example" id="example3">Sample idea: I would put out cups and plates, and then I would decorate the room. (Your own idea is welcome!)</div></div>
+</section>
+<section class="card"><h2>Part D · Mini Writing</h2><p class="mini">Imagine you are getting ready for a celebration. Write 3–5 sentences (about 30 words or more). Include <strong>could</strong> or <strong>would like to</strong>, and at least one sequencing word: <strong>first</strong>, <strong>then</strong>, or <strong>finally</strong>.</p>
+<textarea id="writing" style="min-height:142px" placeholder="First, ..."></textarea><div class="status" id="word-count">0 words</div>
+</section>
+<section class="card" id="submission"><h2>Review Your Answers</h2><p class="mini">Check your multiple-choice answers. Wh- answers and writing are for teacher review, not automatically graded.</p>
+<div class="actions"><button class="btn" id="check-btn" type="button">Check My Answers</button><button class="btn secondary" id="reset-btn" type="button">Try Again</button></div>
+<div class="score" id="score" role="status"></div>
+<div class="actions"><button class="btn secondary hidden" id="copy-btn" type="button">複製作答結果（貼到 LINE）</button></div>
+<p class="note">目前是單機練習版：成績只會顯示在這個瀏覽器，不會自動寄給老師。若要回傳給老師，請按「複製作答結果」並貼到 LINE。</p><div id="copy-status" class="status" aria-live="polite"></div>
+</section>
+</div>
+<footer>Chill Ciao Lab · Original practice questions based on class learning objectives</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const questions=[
+{id:'q1',area:'reading',stem:'When does the birthday party begin?',opts:['Early in the morning','At noon','In the evening','After school'],right:1,why:'The family hopes to finish preparing before noon because that is when the party starts.'},
+{id:'q2',area:'reading',stem:'Who is celebrating a birthday?',opts:['The boy','Jimmy','The boy’s sister','The boy’s mom'],right:2,why:'The diary describes the boy getting ready for his sister’s tenth birthday.'},
+{id:'q3',area:'reading',stem:'Why can’t the boy play with Jimmy right away?',opts:['He needs to help prepare for the party','He has a school test','Jimmy cannot come until tomorrow','He is going shopping'],right:0,why:'His mom needs help getting everything ready before the guests arrive.'},
+{id:'q4',area:'reading',stem:'What will the family do after blowing up the balloons?',opts:['Bake some cookies','Open the birthday presents','Put the balloons around the living room','Watch a movie together'],right:2,why:'Their plan is to put the balloons in the living room before preparing the table.'},
+{id:'q5',area:'reading',stem:'What will be placed on each plate?',opts:['A yellow party hat','A birthday card','A small toy','A piece of cake'],right:0,why:'Each plate will have a yellow party hat.'},
+{id:'q6',area:'reading',stem:'Which sentence best describes the boy’s morning?',opts:['He is getting ready for a family celebration','He is spending the morning at school','He is visiting Jimmy’s house','He is choosing a birthday present in a store'],right:0,why:'Most of his morning is about helping prepare for his sister’s party.'},
+{id:'q7',area:'language',stem:'Which sentence correctly talks about permission in the past?',opts:['Mom said I can to invite a friend.','Mom said I could invite a friend.','Mom said I would invited a friend.','Mom said I could inviting a friend.'],right:1,why:'After “said”, “could + base verb” can report past permission.'},
+{id:'q8',area:'language',stem:'Which sentence correctly expresses a wish?',opts:['I would like play after lunch.','I could like to play after lunch.','I would like to play after lunch.','I would to like play after lunch.'],right:2,why:'Use “would like to + base verb” to express what someone wants to do.'},
+{id:'q9',area:'language',stem:'We need to ___ the balloons before the guests arrive.',opts:['blow up','knock on','look after','turn off'],right:0,why:'“Blow up” means fill a balloon with air.'},
+{id:'q10',area:'language',stem:'Someone is at the front door. He is ___ on it.',opts:['celebrating','inviting','setting','knocking'],right:3,why:'“Knock on the door” means hit the door gently to get attention.'}
+];
+const letter=i=>'ABCD'[i];
+const $=id=>document.getElementById(id);
+let student='';let checked=false;
+for(const q of questions){
+ const parent=$(q.area==='reading'?'reading-questions':'language-questions');
+ const container=document.createElement('div');container.className='question';container.id=q.id;
+ const title=document.createElement('div');title.className='q-title';title.innerHTML=`<span class="q-num">${q.id.slice(1)}</span>`;
+ title.appendChild(document.createTextNode(q.stem));container.appendChild(title);
+ const opts=document.createElement('div');opts.className='options';
+ q.opts.forEach((o,i)=>{let label=document.createElement('label');label.className='option';
+ const inp=document.createElement('input');inp.type='radio';inp.name=q.id;inp.value=String(i);inp.addEventListener('change',()=>{if(checked){checked=false;hideFeedback()}});
+ const span=document.createElement('span');span.textContent=`${letter(i)}. ${o}`;label.append(inp,span);opts.appendChild(label)});
+ container.appendChild(opts);const feedback=document.createElement('div');feedback.className='feedback';feedback.id=q.id+'-feedback';container.appendChild(feedback);parent.appendChild(container);
+}
+$('start-btn').addEventListener('click',()=>{
+ const s=$('student-name').value.trim().replace(/\s+/g,' ');
+ if(s.split(' ').length<2){$('start-error').textContent='請輸入英文名字＋英文姓氏，例如 Alex Lin。';return}
+ student=s;$('start-error').textContent='';$('start-card').classList.add('hidden');$('practice').classList.remove('hidden');$('practice').scrollIntoView({behavior:'smooth',block:'start'});
+});
+function hideFeedback(){questions.forEach(q=>{const f=$(q.id+'-feedback');f.style.display='none';f.className='feedback'});$('score').style.display='none';$('copy-btn').classList.add('hidden');document.querySelectorAll('.example').forEach(e=>e.style.display='none');}
+$('check-btn').addEventListener('click',()=>{
+ let correct=0;let answered=0;
+ for(const q of questions){
+ const selected=document.querySelector(`input[name="${q.id}"]:checked`);const ans=selected?Number(selected.value):null;
+ if(selected)answered++;
+ const good=ans===q.right;if(good)correct++;
+ const feedback=$(q.id+'-feedback');feedback.style.display='block';feedback.className='feedback '+(good?'correct':'wrong');
+ feedback.textContent=good?'✓ Correct! '+q.why:'✗ '+(ans===null?'Not answered. ':'')+'Correct answer: '+letter(q.right)+'. '+q.why;
+ }
+ checked=true;const sc=$('score');sc.style.display='block';sc.innerHTML=`<strong>${correct} / ${questions.length} correct</strong><br><span>Answered ${answered} of ${questions.length} questions. ${correct===questions.length?'Excellent work! 🌟':'Read the feedback above, then try again to improve.'}</span>`;
+ document.querySelectorAll('.example').forEach(e=>e.style.display='block');$('copy-btn').classList.remove('hidden');sc.scrollIntoView({behavior:'smooth',block:'center'});
+});
+$('reset-btn').addEventListener('click',()=>{
+ questions.forEach(q=>{document.querySelectorAll(`input[name="${q.id}"]`).forEach(r=>r.checked=false)});
+ checked=false;hideFeedback();$('reading-questions').scrollIntoView({behavior:'smooth',block:'start'});
+});
+const words=s=>s.trim()?s.trim().split(/\s+/).length:0;
+$('writing').addEventListener('input',()=>{$('word-count').textContent=words($('writing').value)+' words'+(words($('writing').value)>=30?' · ✓ 30+ words':' · Aim for 30 words')});
+function report(){
+ const lines=['Chill Ciao Lab | Reading Starter Book 3 | Unit 1','Student: '+student,'','Multiple Choice:'];
+ let score=0;
+ for(const q of questions){const selected=document.querySelector(`input[name="${q.id}"]:checked`);const a=selected?Number(selected.value):null;if(a===q.right)score++;
+ lines.push(q.id.toUpperCase()+': '+(a===null?'Not answered':letter(a))+' | '+(a===q.right?'Correct':'Incorrect')+' | Answer '+letter(q.right));}
+ lines.push('Score: '+score+'/'+questions.length,'','Wh- Questions:');
+ ['wh1','wh2','wh3'].forEach((id,i)=>lines.push((i+1)+'. '+($(id).value.trim()||'(blank)')));
+ lines.push('','Mini Writing ('+words($('writing').value)+' words):',$('writing').value.trim()||'(blank)');
+ return lines.join('\n');
+}
+$('copy-btn').addEventListener('click',async()=>{
+ const content=report();try{await navigator.clipboard.writeText(content);$('copy-status').textContent='已複製！請打開老師的 LINE，貼上訊息傳送。'}
+ catch(e){const t=document.createElement('textarea');t.value=content;t.style.position='fixed';t.style.left='-10000px';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();$('copy-status').textContent=ok?'已複製！請貼到老師的 LINE。':'複製失敗；請用 HTTPS 開啟網頁再試一次。';}
+});
+})();
+</script>
+</body>
+</html>
